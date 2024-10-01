@@ -1,14 +1,13 @@
 <?php
 
+$token = "8088381218:AAGykLQg79sqU6zZHpKyBXB-a_jZ29d9Lk8";
+
+$chat_id = "170195649";
+
 /*$token = "7405933413:AAHRb-M7T282WvILRR8pkUCzacyxiauaahQ";
 
-$chat_id = "-4288535116";*/
+$chat_id = "-4273521241";*/
 
-$token = "7405933413:AAHRb-M7T282WvILRR8pkUCzacyxiauaahQ";
-
-$chat_id = "-4273521241";
-
-if ($_POST['act'] == 'order') {
     $product = ($_POST['product']);
     $street = ($_POST['street']);
     $home = ($_POST['home']);
@@ -36,10 +35,11 @@ if ($_POST['act'] == 'order') {
     $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
 
     if ($sendToTelegram) {
-        header("Location: https://тороторо.рф");
+        echo($txt);
+        alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами в ближайшее время.');
     }
 
     else {
-        header("Location: https://тороторо.рф");
+        echo($txt);
+        alert('Что-то пошло не так. ПОпробуйте отправить форму ещё раз.');
     }
-}

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="icon" type="image/x-icon" href="/tor/img/favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
@@ -34,26 +36,30 @@
           <div class="flex__left disable">
             <div class="left__contacts">
               <div class="contacts__text">
-                <div class="contacts">КОНТАКТЫ</div>
-                <div class="contacts__geo">
-                  <div class=".contacts__city">Северск</div>
+                <div class="contacts">
+                  <a class="contacts__navbar" href="tel:+79095427774">КОНТАКТЫ</a>
+                </div>
+                <div class=".contacts__city">
+                  <a class="contacts__navbar" target="_blank" href="https://maps.app.goo.gl/Jvub3HZUWTBL8NVt7">
+                    Северск</a
+                  >
                 </div>
               </div>
               <div class="search__container">
                 <div class="search__flex">
-                 <input
-                 type="text"
-                 id="searchInput"
-                 placeholder="Введите текст для поиска"
-                 class="search"
-                 oninput="searchProducts()"
-               />
-               <button class="close__search" style="display: none">X</button>
+                  <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Введите текст для поиска"
+                    class="search"
+                    oninput="searchProducts()"
+                  />
+                  <button class="close__search" style="display: none">X</button>
                 </div>
-                 <div id="searchResultsContainer" style="display: none">
-                   <div id="searchResults"></div>
-                 </div>
-               </div>
+                <div id="searchResultsContainer" style="display: none">
+                  <div id="searchResults"></div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex__middle disable">
@@ -75,84 +81,85 @@
               <button class="offer" id="openCartBtn">Открыть корзину</button>
             </div>
             <div class="cart__container" id="cartContainer">
-              <h2>Корзина</h2>
-              <form class="form" method="post" action="./send.php" id="zakaz">
-                <!--<input class="input-price" type="hidden" name="price" value="">
-                            <input class="input-name" type="hidden" name="name" value="">
-                            <input class="input-order" type="hidden" name="order" value="">-->
-                <input
-                  class="input-data"
-                  type="hidden"
-                  name="product"
-                  value=""
+              <div class="shopping_cart">
+                <div class="close-btn">X</div>
+                <form class="form" method="post" action="./send.php" id="zakaz">
+                <div class="form-left">
+                  <input
+                  required
+                  name="street"
+                  class="input-form input-address"
+                  type="text"
+                  placeholder="Введите улицу *"
                 />
-                <input type="hidden" name="act" value="order" />
-                <div class="flex-form">
-                  <div class="left-form">
-                    <input
-                      required
-                      name="street"
-                      class="input-form input-address"
-                      type="text"
-                      placeholder="Введите улицу *"
-                    />
-                    <input
-                      required
-                      name="home"
-                      class="input-form input-address"
-                      type="text"
-                      placeholder="Введите дом *"
-                    />
-                    <input
-                      name="podhome"
-                      class="input-form input-address"
-                      type="text"
-                      placeholder="Введите подъезд"
-                    />
-                    <input
-                      name="levelhome"
-                      class="input-form input-address"
-                      type="text"
-                      placeholder="Введите этаж"
-                    />
-                  </div>
-                  <div class="right-form">
-                    <input
-                      required
-                      name="kvartira"
-                      class="input-form input-address"
-                      type="text"
-                      placeholder="Введите Кв-ра/Офис *"
-                    />
-                    <input
-                      required
-                      name="tel"
-                      class="input-form input-tel"
-                      type="tel"
-                      placeholder="Введите телефон"
-                    />
-                    <input
-                      required
-                      name="name"
-                      class="input-form input-name"
-                      type="text"
-                      placeholder="Ваше имя"
-                    />
-                    <input
-                      class="input-form"
-                      required
-                      name="count_pers"
-                      placeholder="Количество персон"
-                      type="number"
-                    />
-                  </div>
+                <input
+                  required
+                  name="home"
+                  class="input-form input-address"
+                  type="text"
+                  placeholder="Введите дом *"
+                />
+                <input
+                  name="podhome"
+                  class="input-form input-address"
+                  type="text"
+                  placeholder="Введите подъезд"
+                />
+                <input
+                  name="levelhome"
+                  class="input-form input-address"
+                  type="text"
+                  placeholder="Введите этаж"
+                />
                 </div>
+                <div class="form-right">
+                  <input
+                  required
+                  name="kvartira"
+                  class="input-form input-address"
+                  type="text"
+                  placeholder="Введите Кв-ра/Офис *"
+                />
+                <input
+                  required
+                  name="tel"
+                  class="input-form input-tel"
+                  type="tel"
+                  placeholder="Введите телефон"
+                />
+                <input
+                  required
+                  name="name"
+                  class="input-form input-name"
+                  type="text"
+                  placeholder="Ваше имя"
+                />
                 <input
                   class="input-form"
+                  required
+                  name="count_pers"
+                  placeholder="Количество персон"
+                  type="number"
+                />
+                </div>
+                <input
+                  class="input-form promo-code-input"
                   name="promokod"
                   placeholder="Промокод"
                   type="text"
                 />
+		<input class="input-data" type="hidden" name="product" value=""/>
+                <button class="promo-code-btn">применить</button>
+                <button type="submit" class="btn-order">Заказать</button>
+                </form>
+              </div>
+              <div class="cart-right">
+                <h2 class="card-title">Корзина</h2>
+                <!--<input class="input-price" type="hidden" name="price" value="">
+                            <input class="input-name" type="hidden" name="name" value="">
+                            <input class="input-order" type="hidden" name="order" value="">-->
+                <div type="hidden" name="act" value="order"></div>
+
                 <ul id="cartItems"></ul>
                 <div class="of__btns">
                   <button class="closeCart" id="closeCartBtn">
@@ -166,7 +173,7 @@
                     Оформить заказ
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -328,7 +335,7 @@
                     лава.
 
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">320 R</p>
                   </div>
                 </div>
@@ -535,7 +542,7 @@
                   <div class="desc__name">Маки авокадо</div>
                   <div class="desc__text">
                     Состав: нори, авокадо. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">230 R</p>
                   </div>
                 </div>
@@ -585,7 +592,7 @@
                   <div class="desc__name">Лотос</div>
                   <div class="desc__text">
                     Состав: нори, лосось, сливочный сыр. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">260 R</p>
                   </div>
                 </div>
@@ -639,7 +646,7 @@
                     Состав: нори, сливочный сыр, сурими, огурец, соус лава.
 
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">275 R</p>
                   </div>
                 </div>
@@ -665,7 +672,7 @@
                   <div class="desc__text">
                     Состав: нори, лосось, сливочный сыр, огурец, соус лава.
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">320 R</p>
                   </div>
                 </div>
@@ -691,7 +698,7 @@
                   <div class="desc__text">
                     Состав: нори, лосось, сливочный сыр, фирменный соус «КимЧи»,
                     икра масаго. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">340 R</p>
                   </div>
                 </div>
@@ -717,7 +724,7 @@
                   <div class="desc__text">
                     Состав: нори, сливочный сыр, тигровая креветка, огурец,
                     зелёный лук, фирменный соус «Кунжутный».<br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">340 R</p>
                   </div>
                 </div>
@@ -744,7 +751,7 @@
                     Состав: тигровая креветка, сурими, сливочный сыр, нори,
                     фирменный соус «Том-Ям».
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">380 R</p>
                   </div>
                 </div>
@@ -770,7 +777,7 @@
                   <div class="desc__text">
                     Состав: нори, сливочный сыр, огурец, сурими, соус «Унаги»,
                     икра масаго. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">300 R</p>
                   </div>
                 </div>
@@ -796,7 +803,7 @@
                   <div class="desc__text">
                     Состав: лосось, лепешка, сливочный сыр, зелёный лук, салат
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">280 R</p>
                   </div>
                 </div>
@@ -822,7 +829,7 @@
                   <div class="desc__text">
                     Состав: курица, лепешка, сливочный сыр, помидор, салат
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">260 R</p>
                   </div>
                 </div>
@@ -850,7 +857,7 @@
                     салат
 
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">280 R</p>
                   </div>
                 </div>
@@ -889,7 +896,7 @@
                   <div class="desc__text">
                     Состав: нори, темпура, сливочный сыр, тигровая креветка,
                     фирменный соус «КимЧи», зелёный лук. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">330 R</p>
                   </div>
                 </div>
@@ -915,7 +922,7 @@
                   <div class="desc__text">
                     Состав: нори, темпура, тигровая креветка, Сливочный сыр,
                     огурец, фирменный соус «Том-Ям». <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">360 R</p>
                   </div>
                 </div>
@@ -941,7 +948,7 @@
                   <div class="desc__text">
                     Состав: нори, темпура, Сливочный сыр, лосось, сурими,
                     огурец, фирменный соус «КимЧи». <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">360 R</p>
                   </div>
                 </div>
@@ -967,7 +974,7 @@
                   <div class="desc__text">
                     Состав: нори, темпура, тигровые креветки, сливочный сыр,
                     огурец, соус «Унаги». <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">320 R</p>
                   </div>
                 </div>
@@ -993,7 +1000,7 @@
                   <div class="desc__text">
                     Состав: нори, темпура, курица, сливочный сыр, помидор, соус
                     «Унаги»<br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">280 R</p>
                   </div>
                 </div>
@@ -1021,7 +1028,7 @@
                     фирменный соус «КимЧи», соус «Унаги».
 
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">300 R</p>
                   </div>
                 </div>
@@ -1047,7 +1054,7 @@
                   <div class="desc__text">
                     Состав: нори, темпура, сливочный сыр, лосось, огурец, соус
                     лава. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">330 R</p>
                   </div>
                 </div>
@@ -1074,7 +1081,7 @@
                     Состав: нори, темпура, сливочный сыр, тигровые креветки,
                     лосось, огурец.
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">340 R</p>
                   </div>
                 </div>
@@ -1100,7 +1107,7 @@
                   <div class="desc__text">
                     Состав: нори, темпура, Сливочный сыр, тигровая креветка,
                     огурец, соус лава. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">330 R</p>
                   </div>
                 </div>
@@ -1165,7 +1172,6 @@
                   <div class="desc__text">
                     Роллы: запеченный с курицей, запеченный с креветкой,
                     запеченный с мидией, запеченный с лососем.
-                    <p class="BGU"></p>
                     <p class="cost__with__weight">1050 R</p>
                   </div>
                 </div>
@@ -1192,7 +1198,6 @@
                   <div class="desc__text">
                     Состав: нори, cыр чеддер "плавленный" , сливочный сыр,
                     тигровая креветка, соус "Унаги", икра масаго.
-                    <p class="BGU"></p>
                     <p class="cost__with__weight">285 R</p>
                   </div>
                 </div>
@@ -1474,7 +1479,7 @@
                   <div class="desc__text">
                     Состав: рис, тигровые креветки, сливочный сыр, огурец, соус
                     "Лава"<br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">300 R</p>
                   </div>
                 </div>
@@ -1500,7 +1505,6 @@
                   <div class="desc__text">
                     Состав: рис, сливочный сыр, курица, помидор, зеленый лук,
                     фирменный соус "Цезарь", соус "Унаги"
-                    <p class="BGU"></p>
                     <p class="cost__with__weight">300 R</p>
                   </div>
                 </div>
@@ -1526,7 +1530,6 @@
                   <div class="desc__text">
                     Состав: рис, лосось, соус "Спайси", авокадо, сливочный сыр,
                     соус "Унаги".
-                    <p class="BGU"></p>
                     <p class="cost__with__weight">300 R</p>
                   </div>
                 </div>
@@ -1548,7 +1551,7 @@
               <div class="cat__flex">
                 <div class="product__presentaition">
                   <img
-                    src="/img/soups/tomyam.jpg"
+                    src="img/soups/tomyam.jpg"
                     alt="testimg"
                     class="product__image"
                   />
@@ -1560,11 +1563,10 @@
                   <button class="add__to__cart">В корзину</button>
                 </div>
                 <div class="product__desc">
-                  <div class="desc__name">Том-Ям с морепродуктами</div>
+                  <div class="desc__name">Том-Ям с курицей</div>
                   <div class="desc__text">
                     Состав:Фирменный бульон, рис, курица-гриль, грибы, томаты
                     черри, нори, лайм, лемонграсс , кокосовое молоко
-                    <p class="BGU"></p>
                     <p class="cost__with__weight">430 R</p>
                   </div>
                 </div>
@@ -1574,7 +1576,7 @@
               <div class="cat__flex">
                 <div class="product__presentaition">
                   <img
-                    src="/img/soups/tomyamsmoreproduct.jpg"
+                    src="img/soups/tomyamsmoreproduct.jpg"
                     alt="testimg"
                     class="product__image"
                   />
@@ -1591,7 +1593,7 @@
                     Состав: фирменный бульон, рис, креветки «Тигровые», мидии,
                     лосось, грибы, черри, нори, лайм, лемонграсс , кокосовое
                     молоко<br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">530 R</p>
                   </div>
                 </div>
@@ -1629,7 +1631,7 @@
                   <div class="desc__text">
                     Состав:Мидии, фирменный соус «Спайси», кунжут, лайм, соус
                     «Унаги», рис<br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">310 R</p>
                   </div>
                 </div>
@@ -1655,7 +1657,7 @@
                   <div class="desc__text">
                     Состав:Мидии, фирменный соус «Спайси», кунжут, лайм, соус
                     «Унаги», рис<br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">430 R</p>
                   </div>
                 </div>
@@ -1706,7 +1708,7 @@
                   <div class="desc__name">Мидии "Сливочные" - 5 шт.</div>
                   <div class="desc__text">
                     Мидии, соус «Сливочный», кунжут, лайм, соус «Унаги», рис
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">450 R</p>
                   </div>
                 </div>
@@ -1731,7 +1733,7 @@
                   <div class="desc__name">Мидии "Сливочные" - 5 шт.</div>
                   <div class="desc__text">
                     Мидии, соус «Сливочный», кунжут, лайм, соус «Унаги», рис
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">450 R</p>
                   </div>
                 </div>
@@ -1756,7 +1758,7 @@
                   <div class="desc__name">Тарталетки "Сливочные"</div>
                   <div class="desc__text">
                     Состав: мидии, соус «Сливочный», кунжут, лайм, соус «Унаги»,
-                    тарталетки.
+                    тарталетки. КБЖУ: 748.25 / 21.87 / 59.94 / 35.54 О продавце
                     <p class="BGU">КБЖУ: 748.25 / 21.87 / 59.94 / 35.54</p>
                     <p class="cost__with__weight">450 R</p>
                   </div>
@@ -1795,7 +1797,7 @@
                   <div class="desc__text">
                     Состав: лава с тигровой креветкой, лава с лососем, лава с
                     крабом, лава темпура с лососем. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">1100 R</p>
                   </div>
                 </div>
@@ -1822,7 +1824,7 @@
                     Состав: Филадельфия, маки лосось, запеченный с креветкой,
                     мидии "Сливочные" 3 шт.
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">1200 R</p>
                   </div>
                 </div>
@@ -1849,7 +1851,7 @@
                     Состав: Волна, Кунсэй, Лотос, Гейша, запеченный с креветкой,
                     запеченный с лососем, тарталетки "Сливочные", тарталетки
                     "Спайси".<br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">2200 R</p>
                   </div>
                 </div>
@@ -1875,7 +1877,7 @@
                   <div class="desc__text">
                     Роллы: Запеченный с курицей, запеченный с лососем, гейша,
                     лотос. <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">950 R</p>
                   </div>
                 </div>
@@ -1901,7 +1903,7 @@
                   <div class="desc__text">
                     Роллы: запеченный с курицей, запеченный с креветкой,
                     запеченный с мидией, запеченный с лососем.<br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">1050 R</p>
                   </div>
                 </div>
@@ -1928,7 +1930,7 @@
                     Роллы: Волна, Филадельфия, Дракон, Калифорния.
 
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">1400 R</p>
                   </div>
                 </div>
@@ -2040,7 +2042,6 @@
                   <div class="desc__name">Липтон зеленый</div>
                   <div class="desc__text">
                     <br />
-
                     <p class="cost__with__weight">100 R</p>
                   </div>
                 </div>
@@ -2134,7 +2135,7 @@
             <hr class="category__hr" />
           </div>
           <div class="cat1__flex">
-            <div class="cat1__product" data-product-id="79">
+            <div class="cat1__product" data-product-id="77">
               <div class="cat__flex">
                 <div class="product__presentaition">
                   <img
@@ -2153,13 +2154,13 @@
                   <div class="desc__name">Имбирь</div>
                   <div class="desc__text">
                     имбирь красный <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">25 R</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="cat1__product" data-product-id="80">
+            <div class="cat1__product" data-product-id="78">
               <div class="cat__flex">
                 <div class="product__presentaition">
                   <img
@@ -2178,13 +2179,13 @@
                   <div class="desc__name">Соус соевый 100 мл.</div>
                   <div class="desc__text">
                     Соевый соус <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">50 R</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="cat1__product" data-product-id="81">
+            <div class="cat1__product" data-product-id="79">
               <div class="cat__flex">
                 <div class="product__presentaition">
                   <img
@@ -2202,10 +2203,10 @@
                 <div class="product__desc">
                   <div class="desc__name">Васаби</div>
                   <div class="desc__text">
-                    Васаби отдельно
+                    Васаби
 
                     <br />
-                    <p class="BGU"></p>
+
                     <p class="cost__with__weight">25 R</p>
                   </div>
                 </div>
@@ -2215,7 +2216,19 @@
         </div>
       </div>
     </section>
-    <footer class="footer"></footer>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__bar">
+          <div class="contacts__footer">
+            <a href="tel:+79095427774">Позвонить нам</a>
+            <a href="https://vk.com/torotoroseversk">Наша группа в вк</a>
+          </div>
+          <div class="location">
+            <img src="https://go.2gis.com/nmhxzr" alt="" srcset="" />
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <section class="popup popup__disable">
       <div class="container">
