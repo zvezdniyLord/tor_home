@@ -7,8 +7,23 @@ const data = new FormData(document.querySelector("form"));
 const inputPrice = document.querySelector(".input-price");
 const inputName = document.querySelector(".input-name");
 const inputOrder = document.querySelector(".input-order");
+const inputAddress = document.querySelector('.input-address');
 const shoppingBlock = document.querySelector('.shopping_cart');
 const closeShopping = document.querySelector(".close-btn");
+var summory = document.querySelector('.summory')
+var summo = document.querySelector('.summo');
+
+
+function toggleCheckbox(otherCheckboxId, currentCheckbox) {
+  const otherCheckbox = document.getElementById(otherCheckboxId);
+  if (currentCheckbox.checked) {
+    otherCheckbox.disabled = true;
+    inputAddress.setAttribute('required', 'true');
+  } else {
+    inputAddress.setAttribute('required', false);
+    otherCheckbox.disabled = false;
+  }
+}
 
 elementGetNone(closeShopping, shoppingBlock);
 
@@ -118,11 +133,12 @@ function addToCart(
 }
 
 function displayCartItems() {
+  let marginTopValue = 0;
   const cartContainer = document.getElementById("cartItems");
   cartContainer.innerHTML = ""; // Clear container before adding new items
-
-  console.log("🚀  cartItems:", cartItems);
+  cartContainer.style.height = `${cartContainer.scrollHeight}px`
   cartItems.forEach((item) => {
+
     const listItem = document.createElement("li");
     listItem.classList.add("cart__list");
 
@@ -153,9 +169,10 @@ function displayCartItems() {
     // Create and append the text content
     const textContent = document.createElement("span");
     textContent.classList.add("name__list");
-    textContent.textContent = `${item.name} - ${
-      item.price * item.quantity
-    } R количество - ${item.quantity}`;
+    textContent.textContent = `${item.name} - ${item.price * item.quantity
+      } R  количество - ${item.quantity}`;
+    textContent.innerHTML = `${item.name} - <b>${item.price * item.quantity} R</b> количество - <b>${item.quantity}</b>`;
+
     listItem.appendChild(textContent);
 
     // Create and append the remove button
@@ -166,7 +183,9 @@ function displayCartItems() {
 
     listItem.appendChild(removeButton);
     cartContainer.appendChild(listItem);
-  });
+
+  },
+  );
 
   // Перерасчитываем итоговую сумму заказа
   const totalIndex = orderArr.findIndex((item) => item.id === "total");
@@ -202,20 +221,53 @@ function sendCartItems() {
     price: item.price * item.quantity,
     quantity: item.quantity,
   }));
-
   fetch("./send.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(cartData),
+    body: inputData,
   })
-    .then((response) => response.json())
-    .then((data) => {})
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  .then((response) => response.json())
+  .then((data) => {console.log(data)})
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+  console.log(cartData);
 }
+
+function sendDataToTelegram(formData) {
+  const botToken = "7877529594:AAHxhqHMfoIiMqFpd1ltTSSALRjt9yrMIo4";
+  const chatID = '170195649';
+  const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+  console.log(formData);
+  const message = `
+      НОВЫЙ ЗАКАЗ:
+      <b>Product:</b> ${formData.product}
+      <b>Name:</b> ${formData.name}
+      <b>Tel:</b> ${formData.tel}
+      <b>Street:</b> ${formData.home}
+      <b>CountPers:</b> ${formData.count_pers}
+      <b>promokod:</b> ${formData.promokod}`;
+  const params = {
+        chat_id: chatID, // ID чата
+        text: message, // Текст сообщения
+        parse_mode: 'HTML' // Режим парсинга HTML
+    };
+
+    return fetch(apiUrl, {
+      method: 'POST', // Метод отправки
+      headers: {
+          'Content-Type': 'application/json', // Указываем тип содержимого
+      },
+      body: JSON.stringify(params) // Преобразуем параметры в JSON
+  }).then(response => response.json()); // Возвращаем ответ в формате JSON
+
+}
+
+
+
+
 
 function orderAdd(productId, productName, productPrice, productQuantity) {
   orderArr.push({
@@ -242,11 +294,14 @@ function addTotalToOrderArr(orderArr) {
     count: 1,
     summ: totalSum, // Используем summ вместо СУММА
   });
+
   dataToInput(orderArr, inputData);
+  console.log(inputData)
   return orderArr;
 }
 function dataToInput(data, input) {
-  console.log("🚀  data:", data);
+  summory.textContent = `${data[data.length - 1].price} рублей`
+  summo.textContent = `${data[data.length - 1].price} рублей`
   let result = "";
   if (Array.isArray(data)) {
     data.forEach((d) => {
@@ -255,6 +310,7 @@ function dataToInput(data, input) {
       input.value = result;
     });
   }
+  console.log(result)
   return result;
 }
 
@@ -290,14 +346,37 @@ function applyPromoCode(promoCode) {
       summ: newTotalSum,
       СУММА: newTotalSum,
     });
-
+    console.log(inputData)
     dataToInput(orderArr, inputData);
   } else {
   }
 }
-document.querySelector('.btn-order').addEventListener("submit", () => {
-  sendCartItems()
-})
+
+/*document.querySelector('.btn-order').addEventListener("submit", () => {
+  sendCartItems();
+})*/
+
+document.querySelector('form').addEventListener('submit', (e) => {
+  e.preventDefault(); // Отменяем стандартное поведение формы
+      const formData = {
+	name: inputName.value,
+	product: inputData.value
+      };
+      sendDataToTelegram(formData)
+          .then(result => {
+              if (result.ok) {
+                  // Если данные успешно отправлены
+                  console.log('result ok')
+              } else {
+                  // Если произошла ошибка при отправке
+                  console.log('result ne ok')
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          })
+});
+
 function searchProducts() {
   const input = document.getElementById("searchInput").value.toLowerCase();
   const resultsContainer = document.getElementById("searchResultsContainer");
@@ -359,3 +438,4 @@ function elementGetNone(pointer, element) {
     document.querySelector('.cart__container').style.width = '600px';
   })
 };
+console.log(inputData.value)
