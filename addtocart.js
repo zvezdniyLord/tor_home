@@ -10,6 +10,9 @@ const inputOrder = document.querySelector(".input-order");
 const inputAddress = document.querySelector('.input-address');
 const shoppingBlock = document.querySelector('.shopping_cart');
 const closeShopping = document.querySelector(".close-btn");
+const inputVariantOplata = document.querySelector(".input-variantOplata");
+const inputCountPerson = document.querySelector(".input-countPerson");
+const inputComment = document.querySelector(".comment");
 var summory = document.querySelector('.summory')
 var summo = document.querySelector('.summo');
 
@@ -248,7 +251,6 @@ function sendDataToTelegram(formData) {
       <b>Телефон:</b> ${formData.tel}
       <b>Улица:</b> ${formData.home}
       <b>Способ оплаты:</b> ${formData.variant_pay}
-      <b>Промокод:</b> ${formData.promokod}
       <b>Количество персон:</b> ${formData.count_pers}
       <b>Комментарий к заказу:</b> ${formData.commentZakaz}
       `;
@@ -362,8 +364,12 @@ function applyPromoCode(promoCode) {
 document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault(); // Отменяем стандартное поведение формы
       const formData = {
-	name: inputName.value,
-	product: inputData.value
+	    name: inputName.value,
+	    product: inputData.value,
+      home: inputAddress.value,
+      variant_pay: inputVariantOplata.value,
+      count_pers: inputCountPerson.value,
+      commentZakaz: inputComment.value
       };
       sendDataToTelegram(formData)
           .then(result => {
