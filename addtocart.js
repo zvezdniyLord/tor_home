@@ -13,6 +13,7 @@ const closeShopping = document.querySelector(".close-btn");
 const inputVariantOplata = document.querySelector(".input-variantOplata");
 const inputCountPerson = document.querySelector(".input-countPerson");
 const inputComment = document.querySelector(".comment");
+const inputTel = document.querySelector(".input-tel");
 var summory = document.querySelector('.summory')
 var summo = document.querySelector('.summo');
 
@@ -365,6 +366,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault(); // Отменяем стандартное поведение формы
       const formData = {
 	    name: inputName.value,
+      tel: inputTel.value,
 	    product: inputData.value,
       home: inputAddress.value,
       variant_pay: inputVariantOplata.value,
