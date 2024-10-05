@@ -349,7 +349,7 @@ function applyPromoCode(promoCode) {
       name: "Общая сумма",
       price: newTotalSum,
       count: 1,
-      summ: newTotalSum,
+      Сумма_К_Оплате: newTotalSum,
       СУММА: newTotalSum,
     });
     console.log(inputData)
