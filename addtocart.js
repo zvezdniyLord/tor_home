@@ -243,12 +243,15 @@ function sendDataToTelegram(formData) {
   console.log(formData);
   const message = `
       НОВЫЙ ЗАКАЗ:
-      <b>Product:</b> ${formData.product}
-      <b>Name:</b> ${formData.name}
-      <b>Tel:</b> ${formData.tel}
-      <b>Street:</b> ${formData.home}
-      <b>CountPers:</b> ${formData.count_pers}
-      <b>promokod:</b> ${formData.promokod}`;
+      <b>ПОЗИЦИИ:</b> ${formData.product}
+      <b>Имя:</b> ${formData.name}
+      <b>Телефон:</b> ${formData.tel}
+      <b>Улица:</b> ${formData.home}
+      <b>Способ оплаты:</b> ${formData.variant_pay}
+      <b>Промокод:</b> ${formData.promokod}
+      <b>Количество персон:</b> ${formData.count_pers}
+      <b>Комментарий к заказу:</b> ${formData.commentZakaz}
+      `;
   const params = {
         chat_id: chatID, // ID чата
         text: message, // Текст сообщения
